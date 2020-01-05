@@ -33,11 +33,11 @@
       the response object.
 
 ** Cross Origins Requests?
-** Cross-Origin Request
+*** Cross-Origin Request
    A cross origin request is when a resource is requested that has a different
    origin (domain, port or protocal) from it's own.
    A browser will prevent this by default.
-** Cross-Origin Resource Sharing
+*** Cross-Origin Resource Sharing
    CORS is a mechanism that uses additional HTTP headers to tell browsers to
    give a web app running at one origin access to selected resources from a
    different origin.
@@ -61,7 +61,7 @@
   Native implementations of API's can provide better functionality/performance than
   polyfills so they should only be used if native implementation is not available.
 ** jQuery stuff
-** Automatic Loops
+*** Automatic Loops
    When creating user interactivity with the DOM, a common task is selecting groups
    of elements and looping through them to manipulate them in some way. An example
    with vanilla javascript would be using a query selector function followed by a
@@ -71,7 +71,7 @@
    sites <img> elements of the class slideshow, the jQuery select function would
    be $(#slideshow img).hide(). The hide function is then chained to the selector
    which creates a loop and hides each selected element automatically.
-** Chaining
+*** Chaining
    User interfaces often require a series of operations to be performed on element(s).
    jQuery allows developers to "chain" functions which means that the developer can
    continually add functions one after another which will all execute on the jQuery
@@ -91,14 +91,14 @@
   - code modules for dynamic content such as accordions, slideshows, modals etc
   - consistent styling accross multiple browsers
 ** jQuery vs React
-** jQuery
+*** jQuery
    jQuery is a small, fast and fully featured Javascript Library. It provides
    methods whcih simplify common front-end tasks which would normally involve
    multiple lines of code.
    It was created to make it easier and faster to work with javascript and
    remove the differences between different browsers. The key areas of jQuery
    are DOM traversal/manipulation, event handling, animation and AJAX.
-** React
+*** React
    React is a library which focuses on UI for SPA's. React is the view layer in
    the MVC design pattern. When using react you are subscribing to a component
    based architecture for creating a user interface with a focus on lifecycle
@@ -107,25 +107,25 @@
    in memory called the "Virtual DOM" and it functions by comparing this to the
    real DOM and only adding/removing and changes that have occured. This results
    in much faster performance for sites/web apps that require frequent updates.
-** Main differences
+*** Main differences
    React is more recent and is mostly focused on the concepts of SPA's where as
    jQuery was written with MPA's as the main focus.
 ** let vs var
-** let
+*** let
    When let is used inside a function/expression it "block scope", which means any name
    colisions will not redefine the variable and it will go out of scope after the function/
    expression has executed.
-** var
+*** var
    When var is used there is only global scope, which means the variable is available everywhere.
    So is there is any name collisions inside a function or expression it will be a redeclaration
    of the variable which will also change it's value for everywhere it is used in the code. This
    is a common issue with for loops using var.
 ** IIFE
-** Without params
+*** Without params
   (function func(){
     // thing
   })();
-** With params
+*** With params
    (function func(arg1, arg2) {
      // thing
    })("data", "moreStuff");
@@ -155,18 +155,18 @@
 
     })();
 ** ES6 classes, Modules and React Components
-** classes
+*** classes
    Classes are templates for creating objects which contain a constructor function, properties
    getter/setters and methods.
    Classes do not support encapsolation in javascript.
-** Modules
+*** Modules
    Modules are a way of breaking up your code into individual files. This allows better organisation
    and management of code as a codebase can be broken down into small reusable "modular" code promoting
    code re-usability and readability.
    The way modules are accessed is similar to the revealing module pattern, in the way functions/variables
    and classes can be hidden or made available "exported" to the consumer. This is achieved by importing
    the files/modules that are to be used in the current file/module.
-** React Components
+*** React Components
    React components are defined as classes or functions, which allow objects to be created with the
    required properties/methods for UI components. React components are oftern organised into modules
    for better code organisation, readability and code reuse. A module can have more than one component.
