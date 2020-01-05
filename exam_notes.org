@@ -1,0 +1,307 @@
+#+title: Client Side Exam Notes 2019-2020
+
+* Exemplar Paper
+** 4 ways to find elements in the DOM?
+  document.getElementById();
+  document.getElementByClassName();
+  document.getElementsByTagName();
+  document.querySelectorAll("element");
+** what does "useCapture" do in addEventListener()
+  When the useCapture parameter is set to true in the function, it
+  changes the way an event traverses through the DOM. With the capture
+  phase, the event propagats though the targets ancestors from the Window
+  object to the targets parent.
+  When useCapture is false, the default, then the event propagates through
+  the targets ancestors in reverse order, starting with the targets parent
+  and ending on the Window object, this is called the bubbling phase.
+  If multiple handlers are defined with the capture option, the outermost
+  element handlder will handle the event first. Where as the bubbling method
+  the innermost element will handle the event first.
+** Steps for an AJAX request to add the result to a paragraph element?
+  1) Define the URL of the API
+  2) Create the XHR object
+  3) using the XHR object, open the GET request to URL
+  4) Define callback for the onReadyStateChange
+  5) send the request using XHR object
+
+  - Callback Details
+    - Check status and don't process unless response was successful and
+      ready state is equal to 4.
+    - parse response from JSON to javascript object
+    - find the paragraph with document.getElementById
+    - set the paragraph innerHtml to the value of the desired property of
+      the response object.
+
+** Cross Origins Requests?
+** Cross-Origin Request
+   A cross origin request is when a resource is requested that has a different
+   origin (domain, port or protocal) from it's own.
+   A browser will prevent this by default.
+** Cross-Origin Resource Sharing
+   CORS is a mechanism that uses additional HTTP headers to tell browsers to
+   give a web app running at one origin access to selected resources from a
+   different origin.
+   In order for this to work, CORS must be enabled on the server. The browser
+   sends an Origin header identifyinbg the current domain.
+   If the server decided the request should be allowed, it sends
+   "Access-Control-Allow-Origin header", which can be a specific domain or a *
+   which mean any.
+   If the header is missing or the values don't match, then the browser disables
+   the request, otherwise the response is processed.
+
+** What is a Polyfill?
+  A polyfill is a piece of code (usually Javascript on the web) used to provide
+  modern functionality on older browsers that do not nativaly support it.
+  - example
+    A polyfill could be used to mimic the functionality of an HTML canvas
+    element on IE7 using a Silverlight plugin.
+  Polyfills are also used to address issures where browsers implement tha same
+  features in different ways. The polyfill uses non-standard features in a certain
+  browser to give developers a standards-complient way to access the feature.
+  Native implementations of API's can provide better functionality/performance than
+  polyfills so they should only be used if native implementation is not available.
+** jQuery stuff
+** Automatic Loops
+   When creating user interactivity with the DOM, a common task is selecting groups
+   of elements and looping through them to manipulate them in some way. An example
+   with vanilla javascript would be using a query selector function followed by a
+   for loop of the result and an expression or function to perform on each element.
+   Because this is such a common task for developers, jQuery has built in features/
+   functions to handle this. An example is the hide function. To select all of a
+   sites <img> elements of the class slideshow, the jQuery select function would
+   be $(#slideshow img).hide(). The hide function is then chained to the selector
+   which creates a loop and hides each selected element automatically.
+** Chaining
+   User interfaces often require a series of operations to be performed on element(s).
+   jQuery allows developers to "chain" functions which means that the developer can
+   continually add functions one after another which will all execute on the jQuery
+   collection of elements.
+   Each function is connected with a period until the last function in the chain which
+   is ended with a semi-colon.
+   - example of setting a width an height of an element with id 'item'
+     $('#item').width(300).height(200);
+   Chaining is built into some programing languages but not javasctipt. Because of this
+   it is only jQuery functions that can be chained, not naitive javascript ones.
+** Features/benofits of JS Frameworks
+  Javascript and CSS frameworks include many features such as:
+  - a grid system for responsive web design
+  - series of icons
+  - web typography
+  - styling for elements such as buttons, forms etc
+  - code modules for dynamic content such as accordions, slideshows, modals etc
+  - consistent styling accross multiple browsers
+** jQuery vs React
+** jQuery
+   jQuery is a small, fast and fully featured Javascript Library. It provides
+   methods whcih simplify common front-end tasks which would normally involve
+   multiple lines of code.
+   It was created to make it easier and faster to work with javascript and
+   remove the differences between different browsers. The key areas of jQuery
+   are DOM traversal/manipulation, event handling, animation and AJAX.
+** React
+   React is a library which focuses on UI for SPA's. React is the view layer in
+   the MVC design pattern. When using react you are subscribing to a component
+   based architecture for creating a user interface with a focus on lifecycle
+   methods. The benefits of this are code/component reusability. React does not
+   manipulate the DOM directly, it instead as a virtual representation of it
+   in memory called the "Virtual DOM" and it functions by comparing this to the
+   real DOM and only adding/removing and changes that have occured. This results
+   in much faster performance for sites/web apps that require frequent updates.
+** Main differences
+   React is more recent and is mostly focused on the concepts of SPA's where as
+   jQuery was written with MPA's as the main focus.
+** let vs var
+** let
+   When let is used inside a function/expression it "block scope", which means any name
+   colisions will not redefine the variable and it will go out of scope after the function/
+   expression has executed.
+** var
+   When var is used there is only global scope, which means the variable is available everywhere.
+   So is there is any name collisions inside a function or expression it will be a redeclaration
+   of the variable which will also change it's value for everywhere it is used in the code. This
+   is a common issue with for loops using var.
+** IIFE
+** Without params
+  (function func(){
+    // thing
+  })();
+** With params
+   (function func(arg1, arg2) {
+     // thing
+   })("data", "moreStuff");
+** Revealing module pattern
+  This pattern is an IIFE that returns an object. The object returned contains the members of
+  the module that are available to the consumer. By doing this it allows the creator to encapsolate
+  parts of the module to create "private" and "public" members, similar to a language like Java.
+  When the IIFE executes, the object returned is in global scope and contains referances to it's
+  members that are publically available to the consumer. The private members of the module are
+  part of the closure so are accessable to the public functions if they have been coded that way.
+  - example
+    var module = (function () {
+      var private = "string";
+
+      function getPrivate() {
+        privateFunction();
+        return private;
+      }
+
+      function privateFunction() {
+        console.log('private stuff');
+      }
+
+      return {
+        getPrivate: getPrivate
+      };
+
+    })();
+** ES6 classes, Modules and React Components
+** classes
+   Classes are templates for creating objects which contain a constructor function, properties
+   getter/setters and methods.
+   Classes do not support encapsolation in javascript.
+** Modules
+   Modules are a way of breaking up your code into individual files. This allows better organisation
+   and management of code as a codebase can be broken down into small reusable "modular" code promoting
+   code re-usability and readability.
+   The way modules are accessed is similar to the revealing module pattern, in the way functions/variables
+   and classes can be hidden or made available "exported" to the consumer. This is achieved by importing
+   the files/modules that are to be used in the current file/module.
+** React Components
+   React components are defined as classes or functions, which allow objects to be created with the
+   required properties/methods for UI components. React components are oftern organised into modules
+   for better code organisation, readability and code reuse. A module can have more than one component.
+** Server Push Communication model "push notifications" example with benefits
+  An example of a web app that would benefit from the above would be a news
+  website. The main reason for this is a client does not know when the latest
+  news update will occur and to continually check is a very time consuming task.
+  A more appropriate solution would be for the user to "subscribe" to notifactations
+  from the website so that they can be sent a message to inform them either a message
+  to inform them the site has new information, or the actual information itself in the
+  message.
+** Server Sent Events SEE
+  Server-Sent-Events (SEE) is a server push technology enabling a client to recieve
+  automatic updates from a server via HTTP connection. The SEE EventSource API is
+  standardized as part of HTML5.
+  - Key Facts
+    SSE uses text/eventstream mime type
+    Keeps HTTP connection open by including Connection: keep-alive header
+    Sends stream of textual messages using connection
+    Consumed in client using HTML5 EventSource object
+    One way communication server-client, any client-server data needs to be sent with
+    standard HTTP requests
+** Web Sockets
+  Web Sockets specification defines a full duplex single socket connection over which
+  messages can be sent between client and server. It uses HTTP request/response as
+  handshake to establish connection, then uses the WebSocket protocal for true
+  bidirectional communication. Both client and server must support the protocol.
+  - Key Facts
+    WebSocket specification defines a full-duplex single socket connection over which
+    messages can be sent between client and server in either direction
+    Uses HTTP request/response as handshake to establish connection
+    Then uses WebSocket protocol for true bidirectional communication
+    Needs client and server which have WebSocket support
+
+** WebRTC
+  WebRTC is a framework that provides native browser support for true P2P communication
+  where data flows directly from browser to browser. It's main focus is for video and audio.
+** WebRTC operation
+   - Obtain data stream
+   - Gather network information
+   - Exchange information of media, i.e codecs, resolutions
+   - Stream the data
+** Explain the role played by WebSockets in P2P communication with WebRTC
+  Communication between browsers with WebRTC is usually P2P, however in order to setup
+  a connection a signaling channel is required. A signaling server is needed to allow exchange
+  of session descriptions and network reachability. Communication between browsers and signaling
+  server are not part of the WebRTC spec, but is often done with WebSockets.
+** Single Page Application is less secure than Multipage application?
+  The main difference between a server side rendered multi-page app and a SPA is in what
+  is secured.
+  MPA - authentication allows user to view a page, which may have privileged content rendered
+  in it.
+  SPA - authentication allows page to access an API endpoint, which may return priviladged
+  content to render in page.
+  SPA is mostly about securing API's, MPA's is about securing pages
+** Authentication methods
+   - MPA
+     In simplest case, user submits a form in login page with username/password (encrypted SSL).
+     Server-side code checks credentials, if OK, sends a cookie to browser along with protected
+     page.
+     Browser sends cookie on each request, authenticated to access protected pages, until cookie
+     expires.
+   - SPA
+     Page itself is not protected.
+     User submits form with username/password, form data sent to login API endpoint.
+     Server-side code checks credentials, if OK, sends a token to browser.
+     Browser sends token with each request, authenticated to access protected API endpoints
+     (routes).
+** XSS
+   Both MPA and SPA are vunerable to execution of malicious scripts.
+   Can be mitigated by escaping/sanitizing inputs.
+   SPA vunerable as JWT could be read by script, can mitigate by using HTTP only cookies.
+** CSRF
+   Mitigated by tokens - syncronization token in MPA, JWT authentication token in SPA.
+   Can mitigate XSS and CSRF together in SPA and MPA using both cookies and tokens.
+** Cross-site scripting (XSS)
+  Cross-Site scriting attacks are a type of injection, in which malicious scripts are injected
+  into websites. XSS attacks occur when an attacker uses a web application to send malicious code,
+  generally in the form of a browser side script, to a different end user.
+** Cross-site Request Forgery (CSRF)
+  CSRF is an attack that forces an end user to execute unwanted actions on a web app in which
+  they're currently authenticated. CSRF attacks often target state-changing requests since the
+  attacker has no way to see the response to the forged request.
+  - example
+    User logs into one site, i.e their bank account, with token stored as cookie. With browser
+    still open, is tricked into visiting a malicious site, which contains a link containing a
+    call to the first site. User is still authenticated to bank site so cookie send with
+    malicious request is user clicks link, instruction is authorised.
+
+* Past Paper questions < 2019
+** HTML5 Form attributes used to constrain input?
+*** Date
+   This is used to define a before or after date restriction to the user input
+   field in a form. It uses the attributes type-date, min-earliest date and
+   max-latest date accepted.
+   - example
+     <input type="date" min="1999-12-23">
+*** Range
+    This is used to define contorl for the range of a number that can be accepted
+    in the forms user input field. It uses the type, min, max and step attributes.
+    Step is the incremental value between moves
+    - example
+      <input type"ranger" min="5" max="400" step="5">
+
+** What is JSON?
+   JavaScript Object Notation is a standard data format that uses
+   human readable test to store data objects using key value pairs.
+   - example
+     {
+       "employees": 
+        [
+          {"firstname": "john", "secondname":"kavanagh"},
+          {"firstname": "Frank", "secondname":"doe"}
+        ]
+     }
+     
+   - key points
+     data is key value pairs
+     seperated by commas
+     curly braces hold objects
+     square brackets hold arrays
+     datatypes must be: string, number, JSON object, array, boolean and null
+* Non Question Related Stuff
+** What is the DOM?
+  The DOM (Document Object Model), is an interface that allows scripts or
+  programs to access and manipulate the contents of a web page or document.
+  It provides a structured OOP representation of the individual elements in
+  a document represented a hierarchy called the DOM tree.
+** DOM Collections
+  These are arrays of objects in the document, they are for Anchors, Images,
+  Forms and Links. They are NOT for Tables!
+** Event bubbling and capturing
+  In bubbling the inner most elements event is handled first, then the outer.
+  In capturing, the outer most elements event is handled first and then the inner.
+** Module pattern vs Revealing Module Pattern
+** MVC
+** JSON Web Tokens (JWT)
+
