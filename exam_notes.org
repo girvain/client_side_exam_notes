@@ -31,6 +31,16 @@
     - find the paragraph with document.getElementById
     - set the paragraph innerHtml to the value of the desired property of
       the response object.
+      
+*** CODE
+    function reqListener () {
+      console.log(this.responseText);
+    }
+
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", reqListener);
+    oReq.open("GET", "http://www.example.org/example.txt");
+    oReq.send();
 
 ** Cross Origins Requests?
 *** Cross-Origin Request
@@ -303,8 +313,20 @@
   In bubbling the inner most elements event is handled first, then the outer.
   In capturing, the outer most elements event is handled first and then the inner.
 ** Module pattern vs Revealing Module Pattern
+   The only difference is that the revealing module pattern was engineered as a way to
+   ensure that all methods and variables are kept private until they are explicitly exposed
+   - Advantages are cleaner and easier to read code
 ** MVC
+   A design pattern mostly used on web tier frameworks. The Model referes to the
+   data and business logic of an app. The view is the visual representation of
+   the model. The controller is the component that connects the view/user input
+   with the data model.
 ** JSON Web Tokens (JWT)
+   Is a text string that can be used by client and server to authenticate and share info.
+   The token is encoded using a "secret", then that token is passed to the client. The
+   client stores the token in local or session storage so that on each request from the
+   client the token is also sent so it can be validated by the server and it can send the
+   response.
 ** What is HTTP
    HTTP is a network protocal that is the most common method of communication on the
    web. A protocal is a set of rules that must be adhered to for full functionality
@@ -313,9 +335,67 @@
    came before it.
    It is a request/response communication method and the data is sent in the body of
    the request or response. Info of the data is placed in the header or these.
+   - Weaknesses
+     - communication needs to be from the client
+     - Server can't push new data to client
+     - Clients can't communicate directly to eachother
+** Real-time web
+   real time is bidirectional communication. It is not actual real time, but < 100ms.
+   It uses HTTP but with the help of additioinal protocals. Often used for games, chats
+** Polling
+   Polling is when a client request is sent to the server repeatadly on a set time interval.
+   It is not an ideal solution to real time updates, can cause larger network traffic and
+   can be wastefull if there is no new data to request.
+*** Long Polling
+    Is similar but the browser makes an AJAX request and waits for a response before making
+    another request. Requires server side support to work.
 ** AJAX ready states
    0) uninitialized
    1) setup, not sent
    2) sent and in process
    3) in process, some data available
    4) complete
+** Design Patterns
+*** Gang of 4 Pattern catagories
+    - Creational
+      provide ways to instanciate objects
+    - Structural
+      provide ways to define relationships between objects
+    - Behavioural
+      Define ways of communication between objects
+** Facade and Command Patterns?
+** Layered Architecture
+   Large scale apps are often organised into logical layers.
+   These layers are:
+   - Presentation layer
+     User interaction, displays info
+   - Business layer
+     business logic, invoked by presentation layer and passes results to
+     presentation layer. (kinda like Controller in MVC)
+   - Data layer
+     Handles data persistence, retrieves data on behalf of business layer.
+     (kinda like Model in MVC)
+*** Layers and Tiers
+**** Logical layers organise the code by function
+**** Tiers define the deployment of the layers
+     - Client Tier - is code that runs on the browser
+     - Web Tier - is code that runs on the server
+*** Presentation layer
+    - on a MPA, the presentation layer is on the web tier
+    - on a SPA the presentation layer is on the client tier
+** Lexical scope
+   Is when a function is executed inside another function, it has access to the
+   scope of the parent function. It is lexically bound to the parent scope.
+   If the function is returned, this scope will become part of the closure of
+   the function.
+** High order funciton
+   A function that takes a function as an argument or returns a function
+** Module Bundler
+   A module bundler where a browser based app is packages using a range of tools
+   into a single distribution folder, instead of the source code being deployed.
+   Example is webpack
+** Task Runners
+   a script to run tasks or other scripts that perform various acts like minifing CSS
+** Transpiler
+   A transpiler translates code in one language to another. An example being TypeScript
+   to JavaScript. Most common transpiler is Babel.
