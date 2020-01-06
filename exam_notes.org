@@ -289,6 +289,7 @@
      curly braces hold objects
      square brackets hold arrays
      datatypes must be: string, number, JSON object, array, boolean and null
+** Local storage vs cookies
 * Non Question Related Stuff
 ** What is the DOM?
   The DOM (Document Object Model), is an interface that allows scripts or
@@ -304,4 +305,17 @@
 ** Module pattern vs Revealing Module Pattern
 ** MVC
 ** JSON Web Tokens (JWT)
-
+** What is HTTP
+   HTTP is a network protocal that is the most common method of communication on the
+   web. A protocal is a set of rules that must be adhered to for full functionality
+   when sending data over a network.
+   It is stateless, which means that each command is executed independantly of what
+   came before it.
+   It is a request/response communication method and the data is sent in the body of
+   the request or response. Info of the data is placed in the header or these.
+** AJAX ready states
+   0) uninitialized
+   1) setup, not sent
+   2) sent and in process
+   3) in process, some data available
+   4) complete
