@@ -93,6 +93,13 @@
    Chaining is built into some programing languages but not javasctipt. Because of this
    it is only jQuery functions that can be chained, not naitive javascript ones.
 ** Features/benofits of JS Frameworks
+   benefits of JS frameworks:
+   - Well desinged architecture allowing consistency in large teams
+   - Scaleable
+   - well tested
+   - high performance
+   - a lot of "boiler plate" code will have been wrote for you
+   - more secure
   Javascript and CSS frameworks include many features such as:
   - a grid system for responsive web design
   - series of icons
@@ -170,7 +177,7 @@
    getter/setters and methods.
    Classes do not support encapsolation in javascript.
 *** Modules
-   Modules are a way of breaking up your code into individual files. This allows better organisation
+   Modules are a way of breaking up your code into individual collections of files. This allows better organisation
    and management of code as a codebase can be broken down into small reusable "modular" code promoting
    code re-usability and readability.
    The way modules are accessed is similar to the revealing module pattern, in the way functions/variables
